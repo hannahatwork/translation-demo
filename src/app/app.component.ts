@@ -1,17 +1,43 @@
-import { Component } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import {MatMenuTrigger} from '@angular/material/menu';
+import {trigger} from '@angular/animations';
+import {TranslationService} from "./translate.service";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'translation-demo';
+  lang = 'en';
 
-  constructor(private translate: TranslateService){
+  @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
+
+  constructor(private translate: TranslateService, private customTranslate: TranslationService){
     translate.setDefaultLang('en');
+    translate.addLangs(['en', 'fr']);
+    translate.use('en');
+  }
 
+  setLang(lang) {
+    console.log(`Setting lang to ${lang}`);
+    this.lang = lang;
+    this.translate.use(lang);
+    this.customTranslate.changeLang(lang);
+  }
+
+  getLang() {
+    return this.lang;
+  }
+
+  ngOnInit(){
+    this.getLang();
+  }
+
+  click(lang: 'fr' | 'en') {
+    this.setLang(lang);
   }
 }
 
