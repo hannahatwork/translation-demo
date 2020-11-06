@@ -8,6 +8,16 @@
     </mat-menu>
   </div>
   <div>
-    <p [translate]="'demo.greeting'" [translateParams]="{name: 'Covetrus, Maine'}"></p>
+    <p [translate]="'demo.greeting'" [translateParams]="{name: 'Covetrus'}"></p>
+    <ul>
+      <li [translate]="'demo.pluralization.things'" translate [translateParams]="{ count: 0 }"></li>
+      <li [translate]="'demo.pluralization.things'" translate [translateParams]="{ count: 1 }"></li>
+      <li [translate]="'demo.pluralization.things'" translate [translateParams]="{ count: 2 }"></li>
+    </ul>
+    <ul>
+      <li [translate]="'demo.pluralization.people'" translate [translateParams]="{ gender: 'female' }">people</li>
+      <li [translate]="'demo.pluralization.people'" translate [translateParams]="{ gender: 'male' }">people</li>
+      <li [translate]="'demo.pluralization.people'" translate [translateParams]="{ gender: 'other' }">people</li>
+    </ul>
   </div>
 </div>

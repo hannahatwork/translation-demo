@@ -4,8 +4,8 @@ import {Injectable, NgModule} from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import {TranslateCompiler, TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import { TranslateMessageFormatCompiler, TranslateMessageFormatDebugCompiler } from 'ngx-translate-messageformat-compiler';
 import {HttpClient, HttpClientModule, HttpHeaders} from '@angular/common/http';
 import {catchError} from 'rxjs/operators';
 import {Observable} from 'rxjs';
@@ -43,12 +43,6 @@ export class CustomTranslateLoader implements TranslateLoader  {
   }
 }
 
-// tslint:disable-next-line:typedef
-// export function HttpLoaderFactory(http: HttpClient) {
-//   // return new TranslateHttpLoader(http);
-//   return new TranslateHttpLoader(http);
-// }
-
 @NgModule({
   declarations: [
     AppComponent
@@ -62,9 +56,13 @@ export class CustomTranslateLoader implements TranslateLoader  {
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
-        // useFactory: HttpLoaderFactory,
         useClass: CustomTranslateLoader,
         deps: [HttpClient, TranslationService]
+      },
+      compiler: {
+        provide: TranslateCompiler,
+        // useClass: TranslateMessageFormatCompiler
+        useClass: TranslateMessageFormatDebugCompiler
       }
     }),
     BrowserAnimationsModule
