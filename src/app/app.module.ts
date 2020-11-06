@@ -12,16 +12,16 @@ import {Observable} from 'rxjs';
 
 @Injectable()
 export class CustomTranslateLoader implements TranslateLoader  {
-  body = JSON.stringify(['welcome', 'locationInfo']);
+  body = JSON.stringify(['title', 'text', 'greeting']);
   contentHeader = new HttpHeaders({
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
-    body: this.body,
+    Vary: 'Origin',
   });
 
   constructor(private httpClient: HttpClient) {}
   getTranslation(lang: string): Observable<any> {
-    const apiAddress = `http://localhost:8000/json/en`;
+    const apiAddress = `http://localhost:8000/json/1/en`;
     return this.httpClient.get(apiAddress, { headers: this.contentHeader })
       .pipe(
         catchError(() => {
