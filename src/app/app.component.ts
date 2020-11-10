@@ -10,8 +10,10 @@ import {TranslationService} from "./translate.service";
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+  // ng add @angular/localize to use locale
   title = 'translation-demo';
   lang = 'en';
+  currencyVal = 'USD';
 
   @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
 
@@ -22,10 +24,15 @@ export class AppComponent implements OnInit {
   }
 
   setLang(lang) {
-    console.log(`Setting lang to ${lang}`);
     this.lang = lang;
     this.translate.use(lang);
     this.customTranslate.changeLang(lang);
+  }
+
+  setCurrency(currency) {
+    // use ISO 4217 codes
+    console.log(`Setting currency to ${currency}`);
+    this.currencyVal = currency;
   }
 
   getLang() {
@@ -36,8 +43,12 @@ export class AppComponent implements OnInit {
     this.getLang();
   }
 
-  click(lang: 'fr' | 'en') {
+  langClick(lang: 'fr' | 'en') {
     this.setLang(lang);
+  }
+
+  currencyClick(currency: 'EUR' | 'USD') {
+    this.setCurrency(currency);
   }
 }
 

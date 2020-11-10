@@ -1,19 +1,24 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {Injectable, NgModule} from '@angular/core';
+import {Injectable, LOCALE_ID, NgModule} from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import {TranslateCompiler, TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import { TranslateMessageFormatCompiler, TranslateMessageFormatDebugCompiler } from 'ngx-translate-messageformat-compiler';
+import { TranslateMessageFormatCompiler } from 'ngx-translate-messageformat-compiler';
 import {HttpClient, HttpClientModule, HttpHeaders} from '@angular/common/http';
 import {catchError} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { registerLocaleData } from '@angular/common';
 
 import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
 import {TranslationService} from './translate.service';
+
+import localeFr from '@angular/common/locales/fr';
+import localeEn from '@angular/common/locales/en';
+registerLocaleData(localeFr, localeEn);
 
 @Injectable()
 export class CustomTranslateLoader implements TranslateLoader  {
@@ -26,7 +31,6 @@ export class CustomTranslateLoader implements TranslateLoader  {
 
   constructor(private httpClient: HttpClient, private customTranslate: TranslationService) {
     customTranslate.languageSubject.subscribe((val: 'en' | 'fr') => {
-      console.log({val});
       this.getTranslation(val);
     });
   }
@@ -42,6 +46,19 @@ export class CustomTranslateLoader implements TranslateLoader  {
       );
   }
 }
+
+// export class CustomLocaleProvider {
+//   constructor(private customTranslate: TranslationService) {
+//     customTranslate.languageSubject.subscribe((val: 'en-EN' | 'fr-FR') => {
+//       this.getLocale(val);
+//     });
+//   }
+//
+//   getLocale(locale: 'en-EN' | 'fr-FR') {
+//     console.log({ locale });
+//     return locale;
+//   }
+// }
 
 @NgModule({
   declarations: [
@@ -61,14 +78,13 @@ export class CustomTranslateLoader implements TranslateLoader  {
       },
       compiler: {
         provide: TranslateCompiler,
-        // useClass: TranslateMessageFormatCompiler
-        useClass: TranslateMessageFormatDebugCompiler
+        useClass: TranslateMessageFormatCompiler
       }
     }),
     BrowserAnimationsModule
-
   ],
-  providers: [TranslationService],
+  // providers: [TranslationService, { provide: LOCALE_ID, useValue: 'fr-FR' }],
+  providers: [TranslationService, { provide: LOCALE_ID, useValue: 'en-EN' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

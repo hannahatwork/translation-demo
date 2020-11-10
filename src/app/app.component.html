@@ -1,10 +1,24 @@
 <div>
+<!--  <div>-->
+<!--    <p [translate]="'demo.localeSelection'"></p>-->
+<!--    <button mat-button type="button" [matMenuTriggerFor]="menuLocale">Locale</button>-->
+<!--    <mat-menu #menuLocale="matMenu">-->
+<!--      <button mat-menu-item (click)="localeClick('fr-FR')"><span [translate]="'demo.locale.fr-FR'"></span></button>-->
+<!--      <button mat-menu-item (click)="localeClick('en-EN')"><span [translate]="'demo.locale.en-EN'"></span></button>-->
+<!--    </mat-menu>-->
+<!--  </div>-->
   <div>
     <p [translate]="'demo.languageSelection'"></p>
-    <button mat-button type="button" [matMenuTriggerFor]="menu">Menu</button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="click('fr')"><span [translate]="'demo.languages.fr'"></span></button>
-      <button mat-menu-item (click)="click('en')"><span [translate]="'demo.languages.en'"></span></button>
+    <button mat-button type="button" [matMenuTriggerFor]="menuLang">Language</button>
+    <mat-menu #menuLang="matMenu">
+      <button mat-menu-item (click)="langClick('fr')"><span [translate]="'demo.languages.fr'"></span></button>
+      <button mat-menu-item (click)="langClick('en')"><span [translate]="'demo.languages.en'"></span></button>
+    </mat-menu>
+    <p [translate]="'demo.currencySelection'"></p>
+    <button mat-button type="button" [matMenuTriggerFor]="menuCurrency">Currency</button>
+    <mat-menu #menuCurrency="matMenu">
+      <button mat-menu-item (click)="currencyClick('EUR')"><span [translate]="'demo.currency.EUR'"></span></button>
+      <button mat-menu-item (click)="currencyClick('USD')"><span [translate]="'demo.currency.USD'"></span></button>
     </mat-menu>
   </div>
   <div>
@@ -19,5 +33,11 @@
       <li [translate]="'demo.pluralization.people'" translate [translateParams]="{ gender: 'male' }">people</li>
       <li [translate]="'demo.pluralization.people'" translate [translateParams]="{ gender: 'other' }">people</li>
     </ul>
+  </div>
+  <div>
+    <p>{{100.00 | currency : currencyVal}}</p>
+  </div>
+  <div>
+    <p>{{1605046857812 | date}}</p>
   </div>
 </div>
