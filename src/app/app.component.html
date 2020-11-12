@@ -7,21 +7,20 @@
 <!--      <button mat-menu-item (click)="localeClick('en-EN')"><span [translate]="'demo.locale.en-EN'"></span></button>-->
 <!--    </mat-menu>-->
 <!--  </div>-->
-  <div>
-    <p [translate]="'demo.languageSelection'"></p>
-    <button mat-button type="button" [matMenuTriggerFor]="menuLang">Language</button>
+  <div class="menu-bar">
+    <button mat-stroked-button color="primary" type="button" [matMenuTriggerFor]="menuLang"><span [translate]="'demo.languageSelection'"></span></button>
     <mat-menu #menuLang="matMenu">
       <button mat-menu-item (click)="langClick('fr')"><span [translate]="'demo.languages.fr'"></span></button>
       <button mat-menu-item (click)="langClick('en')"><span [translate]="'demo.languages.en'"></span></button>
     </mat-menu>
-    <p [translate]="'demo.currencySelection'"></p>
-    <button mat-button type="button" [matMenuTriggerFor]="menuCurrency">Currency</button>
+    <button mat-stroked-button color="primary" type="button" [matMenuTriggerFor]="menuCurrency"><span [translate]="'demo.currencySelection'"></span></button>
     <mat-menu #menuCurrency="matMenu">
       <button mat-menu-item (click)="currencyClick('EUR')"><span [translate]="'demo.currency.EUR'"></span></button>
       <button mat-menu-item (click)="currencyClick('USD')"><span [translate]="'demo.currency.USD'"></span></button>
     </mat-menu>
   </div>
-  <div>
+  <div class="example-box">
+    <h3>Translation (with pluralization and gender)</h3>
     <p [translate]="'demo.greeting'" [translateParams]="{name: 'Covetrus'}"></p>
     <ul>
       <li [translate]="'demo.pluralization.things'" translate [translateParams]="{ count: 0 }"></li>
@@ -34,10 +33,12 @@
       <li [translate]="'demo.pluralization.people'" translate [translateParams]="{ gender: 'other' }">people</li>
     </ul>
   </div>
-  <div>
+  <div class="example-box">
+    <h3>Currency</h3>
     <p>{{100.00 | currency : currencyVal}}</p>
   </div>
-  <div>
-    <p>{{1605046857812 | date}}</p>
+  <div class="example-box">
+    <h3>Time</h3>
+    <p>{{1605198654458 | date : 'medium'}}</p>
   </div>
 </div>
