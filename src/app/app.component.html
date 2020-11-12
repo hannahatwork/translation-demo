@@ -1,12 +1,4 @@
 <div>
-<!--  <div>-->
-<!--    <p [translate]="'demo.localeSelection'"></p>-->
-<!--    <button mat-button type="button" [matMenuTriggerFor]="menuLocale">Locale</button>-->
-<!--    <mat-menu #menuLocale="matMenu">-->
-<!--      <button mat-menu-item (click)="localeClick('fr-FR')"><span [translate]="'demo.locale.fr-FR'"></span></button>-->
-<!--      <button mat-menu-item (click)="localeClick('en-EN')"><span [translate]="'demo.locale.en-EN'"></span></button>-->
-<!--    </mat-menu>-->
-<!--  </div>-->
   <div class="menu-bar">
     <button mat-stroked-button color="primary" type="button" [matMenuTriggerFor]="menuLang"><span [translate]="'demo.languageSelection'"></span></button>
     <mat-menu #menuLang="matMenu">
@@ -18,9 +10,15 @@
       <button mat-menu-item (click)="currencyClick('EUR')"><span [translate]="'demo.currency.EUR'"></span></button>
       <button mat-menu-item (click)="currencyClick('USD')"><span [translate]="'demo.currency.USD'"></span></button>
     </mat-menu>
+    <button mat-stroked-button color="primary" type="button" [matMenuTriggerFor]="menuTimezone"><span [translate]="'demo.timezoneSelection'"></span></button>
+    <mat-menu #menuTimezone="matMenu">
+      <button mat-menu-item (click)="timezoneClick('GMT-5')"><span [translate]="'demo.timezone.boston'"></span></button>
+      <button mat-menu-item (click)="timezoneClick('GMT-7')"><span [translate]="'demo.timezone.phoenix'"></span></button>
+      <button mat-menu-item (click)="timezoneClick('GMT+1')"><span [translate]="'demo.timezone.paris'"></span></button>
+    </mat-menu>
   </div>
   <div class="example-box">
-    <h3>Translation (with pluralization and gender)</h3>
+    <h3 [translate]="'demo.translationHeader'"></h3>
     <p [translate]="'demo.greeting'" [translateParams]="{name: 'Covetrus'}"></p>
     <ul>
       <li [translate]="'demo.pluralization.things'" translate [translateParams]="{ count: 0 }"></li>
@@ -34,11 +32,11 @@
     </ul>
   </div>
   <div class="example-box">
-    <h3>Currency</h3>
+    <h3 [translate]="'demo.currencyHeader'"></h3>
     <p>{{100.00 | currency : currencyVal}}</p>
   </div>
   <div class="example-box">
-    <h3>Time</h3>
-    <p>{{1605198654458 | date : 'medium'}}</p>
+    <h3 [translate]="'demo.dateTimeHeader'"></h3>
+    <p>{{1605198654458 | date : 'medium' : timezoneVal}}</p>
   </div>
 </div>

@@ -70,8 +70,9 @@ export class CustomTranslateLoader implements TranslateLoader  {
     }),
     BrowserAnimationsModule
   ],
-  providers: [TranslationService, { provide: LOCALE_ID, useValue: 'fr-FR' }],
-  // providers: [TranslationService, { provide: LOCALE_ID, useValue: 'en-EN' }],
+  // providers: [TranslationService, { provide: LOCALE_ID, useValue: 'fr-FR' }],
+  providers: [TranslationService, { provide: LOCALE_ID, useValue: 'en-EN' }],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

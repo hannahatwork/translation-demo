@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   title = 'translation-demo';
   lang = 'en';
   currencyVal = 'USD';
+  timezoneVal = 'GMT-5';
 
   @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
 
@@ -35,6 +36,11 @@ export class AppComponent implements OnInit {
     this.currencyVal = currency;
   }
 
+  setTimezone(timezone) {
+    console.log(`Setting timezone to ${timezone}`);
+    this.timezoneVal = timezone;
+  }
+
   getLang() {
     return this.lang;
   }
@@ -49,6 +55,10 @@ export class AppComponent implements OnInit {
 
   currencyClick(currency: 'EUR' | 'USD') {
     this.setCurrency(currency);
+  }
+
+  timezoneClick(timezone: 'GMT-5' | 'GMT-7' | 'GMT+1') {
+    this.setTimezone(timezone);
   }
 }
 
