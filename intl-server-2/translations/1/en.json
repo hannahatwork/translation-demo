@@ -1,0 +1,41 @@
+{
+  "1": {
+    "title": "Translation demo",
+    "text": "This is a simple demonstration app for ngx-translate",
+    "greeting": "Hello {name}!",
+    "translationHeader": "Translation (with pluralization and gender)",
+    "currencyHeader": "Currency",
+    "dateTimeHeader": "Time",
+    "languageSelection": "Select language",
+    "currencySelection": "Select currency",
+    "timezoneSelection": "Select timezone",
+    "localeSelection": "Select locale",
+    "languages": {
+      "fr": "Français",
+      "en": "English"
+    },
+    "currency": {
+      "EUR": "€",
+      "USD": "$"
+    },
+    "timezone": {
+      "boston": "Boston",
+      "phoenix": "Phoenix",
+      "paris": "Paris"
+    },
+    "locale": {
+      "en-EN": "United States",
+      "fr-FR": "France"
+    },
+    "pluralization": {
+      "things": "There {count, plural, =0{is} one{is} other{are}} {count, plural, =0{} one{a} other{several}} {count, plural, =0{nothing} one{thing} other{things}}",
+      "people": "{gender, select, male{He is} female{She is} other{They are}} {gender, select, male{funny} female{funny} other{funny}}"
+    },
+    "header": "This is a header"
+  },
+  "2": {
+    "welcome": "Welcome, {{firstName}}!",
+    "locationInfo": "{{practice.name}} is located in {{practice.countryWithArticle}}",
+    "noVariables": "And this one has no variables"
+  }
+}
