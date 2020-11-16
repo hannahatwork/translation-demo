@@ -1,7 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import {MatMenuTrigger} from '@angular/material/menu';
-import {trigger} from '@angular/animations';
 import {TranslationService} from "./translate.service";
 
 @Component({
@@ -10,7 +9,8 @@ import {TranslationService} from "./translate.service";
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  // ng add @angular/localize to use locale
+  // i18n: These allow things like language and currency to be set via dropdown in the UI. This won't
+  // need to be implemented when we're gleaning those settings from the locale.
   title = 'translation-demo';
   lang = 'en';
   currencyVal = 'USD';
@@ -61,11 +61,3 @@ export class AppComponent implements OnInit {
     this.setTimezone(timezone);
   }
 }
-
-// covetrus.com/translate/MF1/en.json - 3000  - Global one pass to each Micro UI when they boot
-// 100 keys give me those - api will parse -
-// MF1 - 100 properties - 3000 //server microservice
-// MF1 - response - cache inside it -
-// Here we get the profile - user making http/ container passes it
-// set language accoridng to the profile
-// Date and currency - Angular pipes - which takes care ..

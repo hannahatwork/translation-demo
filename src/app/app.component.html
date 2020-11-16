@@ -1,6 +1,9 @@
 <div>
   <div class="menu-bar">
-    <button mat-stroked-button color="primary" type="button" [matMenuTriggerFor]="menuLang"><span [translate]="'demo.languageSelection'"></span></button>
+    <button mat-stroked-button color="primary" type="button" [matMenuTriggerFor]="menuLang">
+      <!--   i18n-text: ngx translate uses translation pipe (below) OR translation directive (see line 8, "demo.languages.fr")   -->
+      <span>{{'demo.languageSelection' | translate}}</span>
+    </button>
     <mat-menu #menuLang="matMenu">
       <button mat-menu-item (click)="langClick('fr')"><span [translate]="'demo.languages.fr'"></span></button>
       <button mat-menu-item (click)="langClick('en')"><span [translate]="'demo.languages.en'"></span></button>
@@ -18,9 +21,12 @@
     </mat-menu>
   </div>
   <div class="example-box">
-    <h3 [translate]="'demo.translationHeader'"></h3>
+    <h3>{{'demo.translationHeader' | translate}}</h3>
+    <!--  i18n-text: pass params for straightforward interpolation  -->
     <p [translate]="'demo.greeting'" [translateParams]="{name: 'Covetrus'}"></p>
     <ul>
+      <!--   i18n-text: pass params for count or gender. ngx-translate-messageformat-compiler will
+      compile the translations if the translation has been written to support count/gender   -->
       <li [translate]="'demo.pluralization.things'" translate [translateParams]="{ count: 0 }"></li>
       <li [translate]="'demo.pluralization.things'" translate [translateParams]="{ count: 1 }"></li>
       <li [translate]="'demo.pluralization.things'" translate [translateParams]="{ count: 2 }"></li>
@@ -32,11 +38,13 @@
     </ul>
   </div>
   <div class="example-box">
-    <h3 [translate]="'demo.currencyHeader'"></h3>
+    <!--  i18n-date: Use currencyPipe for currency i18n. Formatting will be determined by locale in context.  -->
+    <h3>{{'demo.currencyHeader' | translate}}</h3>
     <p>{{100.00 | currency : currencyVal}}</p>
   </div>
   <div class="example-box">
-    <h3 [translate]="'demo.dateTimeHeader'"></h3>
+    <!--  i18n-date: Use datePipe for date i18n. Formatting will be determined by locale in context.  -->
+    <h3>{{'demo.dateTimeHeader' | translate}}</h3>
     <p>{{1605198654458 | date : 'medium' : timezoneVal}}</p>
   </div>
 </div>
